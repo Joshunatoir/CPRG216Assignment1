@@ -1,3 +1,5 @@
+
+
 #this is a first attempt at just creating a program which collects student names and their GPA's and makes it viewable later
 import time, os
 #declaring variables:
@@ -9,15 +11,25 @@ print  ("Welcome Admin")
 def addStudent():
     global dataStorage
     name = 'default'
-    gpa = []
-    gpaSum = 0
+    gpa = 0
+    gpaSum = []
     print("what is the students Name?")
     name = input(": ")
     print("what was ", name ,"'s GPA?")
-    while gpa != -1:
-        gpa = float(input(": "))
-        gpaSum = sum(gpa)
+    while True:
+
+        gpa = input("(to stop hit enter): ")
+        # a little function to stop the while loop when nothing has been entered
+        if gpa == "":
+            break
+        try:
+            float(gpa)
+            gpaSum.append(gpa)
+        except:
+            print("Invalid input, please try again.")
+    gpaSum = sum(gpaSum)
     dataStorage[name] = gpaSum
+    viewStudent()
     return
 
 def viewStudent():
